@@ -1,5 +1,5 @@
 <template>
-    <div class="py-[42px] border-b-[1px] border-[#D9D9D9] justify-between flex">
+    <div class="py-[30px] border-b-[1px] border-[#D9D9D9] justify-between flex mb-20">
         <div class="flex gap-4 items-center">
             <div>
                 <img src="../assets/logo.svg" alt="">
