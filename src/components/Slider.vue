@@ -6,7 +6,9 @@ import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 const carouselConfig = {
     itemsToShow: 1,
     wrapAround: true,
-    autoplay: 5000
+    autoplay: 5000,
+
+
 }
 
 const sliderItems = [
@@ -46,8 +48,27 @@ const sliderItems = [
 
         <template #addons>
             <Navigation />
+            <CarouselNavigation>
+                <template #prev>
+                    <span>←</span>
+                </template>
+                <template #next>
+                    <span>→</span>
+                </template>
+            </CarouselNavigation>
 
 
         </template>
     </Carousel>
 </template>
+
+<style scoped>
+.carousel {
+    --vc-nav-background: white;
+    --vc-nav-color: #C8C8C8;
+    --vc-nav-color-hover: black;
+    --vc-nav-border-radius: 50%;
+    --vc-nav-width: 40px;
+    --vc-nav-height: 40px;
+}
+</style>
