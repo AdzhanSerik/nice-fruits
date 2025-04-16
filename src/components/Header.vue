@@ -1,5 +1,5 @@
 <template>
-    <div class=" px-[33px] py-[42px] border-b-[1px] border-[#D9D9D9] justify-between w-full flex w-max-[1080px]">
+    <div class="py-[42px] border-b-[1px] border-[#D9D9D9] justify-between flex">
         <div class="flex gap-4 items-center">
             <div>
                 <img src="../assets/logo.svg" alt="">
@@ -9,7 +9,7 @@
                 <span class="text-[14px] mt-[-14px] text-[#9D9D9D]">Твой фруктовый рай</span>
             </div>
         </div>
-        <div class="flex gap-6 px-[75px]">
+        <div class="flex gap-6">
             <div class="flex gap-2 items-center">
                 <div>
                     <img class="w-[20px]" src="../assets/korz.svg" alt="">

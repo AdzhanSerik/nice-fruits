@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-[20px] h-screen">
+    <div class="bg-white rounded-[20px] h-screen px-[80px]">
         <Header />
         <Slider />
     </div>
