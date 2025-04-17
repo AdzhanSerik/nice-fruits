@@ -2,8 +2,8 @@
     <div class="bg-white rounded-[20px] px-[80px]">
         <Header />
         <Slider />
-        <Search />
-        <AllProducts />
+        <Search :onChange="onChange" />
+        <AllProducts :fruits="fruits" />
     </div>
 </template>
 
@@ -13,8 +13,13 @@ import Slider from '../components/Slider.vue'
 import Search from '../components/Search.vue'
 import Fruits from '../Data/fruits.json'
 import AllProducts from '../components/AllProducts.vue'
+import { ref } from 'vue'
 
-console.log(Fruits)
+const fruits = ref(Fruits)
+
+function onChange() {
+    alert('search')
+}
 
 
 </script>

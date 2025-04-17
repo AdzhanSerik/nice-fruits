@@ -6,10 +6,10 @@
 
 <script setup>
 import Product from './Product.vue'
-import fruits from '../Data/fruits.json'
 
-console.log(fruits)
-
+defineProps({
+    fruits: Array
+})
 
 
 </script>
