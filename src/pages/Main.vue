@@ -10,4 +10,9 @@
 import Header from '../components/Header.vue'
 import Slider from '../components/Slider.vue'
 import Search from '../components/Search.vue'
+import Fruits from '../Data/fruits.json'
+
+console.log(Fruits)
+
+
 </script>

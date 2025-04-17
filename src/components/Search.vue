@@ -4,10 +4,10 @@
         <div class="flex gap-2 items-center border border-slate-200 p-2 rounded-full">
             <img src="../assets/search.svg" alt="">
             <input placeholder="Поиск..." class=" outline-none border-none" type="text">
+            <InputText type="text" />
         </div>
     </div>
 </template>
 
 <script setup>
-
 </script>

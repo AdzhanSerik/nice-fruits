@@ -28,12 +28,14 @@
                 </div>
                 <span class="font-[14px] text-[#5C5C5C]">Профиль</span>
             </div>
+
         </div>
     </div>
 
 </template>
 
 <script setup>
+
 </script>
 
 <style lang="scss" scoped></style>
