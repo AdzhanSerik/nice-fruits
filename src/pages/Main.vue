@@ -16,9 +16,12 @@ import AllProducts from '../components/AllProducts.vue'
 import { ref } from 'vue'
 
 const fruits = ref(Fruits)
+const searchText = ref('')
 
-function onChange() {
-    alert('search')
+function onChange(e) {
+    searchText.value = e.target.value
+    fruits.value = Fruits.filter(fruit => fruit.title.toLowerCase().includes(searchText.value.trim().toLowerCase()))
+    console.log(fruits.value)
 }
 
 
