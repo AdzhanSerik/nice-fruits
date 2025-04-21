@@ -4,8 +4,8 @@
         <Slider />
         <Search :onChange="onChange" />
         <AllProducts :fruits="fruits" />
-        <!-- <div class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1"></div> -->
-        <!-- <Cart /> -->
+        <div class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1"></div>
+        <Cart />
     </div>
 </template>
 
