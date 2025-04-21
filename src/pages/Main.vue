@@ -1,11 +1,11 @@
 <template>
-    <div class="bg-white rounded-[20px] px-[80px]">
-        <Header />
+    <div class="bg-white rounded-[20px] px-[80px]" v-auto-animate>
+        <Header :toggleCart="toggleCart" />
         <Slider />
         <Search :onChange="onChange" />
         <AllProducts :fruits="fruits" />
-        <div class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1"></div>
-        <Cart />
+        <div v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1"></div>
+        <Cart v-if="isOpenCart" :toggleCart="toggleCart" />
     </div>
 </template>
 
@@ -20,11 +20,16 @@ import { ref } from 'vue'
 
 const fruits = ref(Fruits)
 const searchText = ref('')
+const isOpenCart = ref(false)
 
 function onChange(e) {
     searchText.value = e.target.value
     fruits.value = Fruits.filter(fruit => fruit.title.toLowerCase().includes(searchText.value.trim().toLowerCase()))
     console.log(fruits.value)
+}
+
+function toggleCart() {
+    isOpenCart.value = !isOpenCart.value
 }
 
 

@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="flex gap-6">
-            <div class="flex gap-2 items-center">
+            <div class="flex gap-2 items-center cursor-pointer" @click="toggleCart">
                 <div>
                     <img class="w-[20px]" src="../assets/korz.svg" alt="">
                 </div>
@@ -35,6 +35,12 @@
 </template>
 
 <script setup>
+
+
+
+defineProps({
+    toggleCart: Function
+})
 
 </script>
 
