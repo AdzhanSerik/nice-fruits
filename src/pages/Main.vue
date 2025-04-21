@@ -4,6 +4,8 @@
         <Slider />
         <Search :onChange="onChange" />
         <AllProducts :fruits="fruits" />
+        <!-- <div class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1"></div> -->
+        <!-- <Cart /> -->
     </div>
 </template>
 
@@ -12,6 +14,7 @@ import Header from '../components/Header.vue'
 import Slider from '../components/Slider.vue'
 import Search from '../components/Search.vue'
 import Fruits from '../Data/fruits.json'
+import Cart from '../components/Cart.vue'
 import AllProducts from '../components/AllProducts.vue'
 import { ref } from 'vue'
 
