@@ -11,7 +11,8 @@
                 <p class="text-[#BDBDBD] text-[16px]">Цена</p>
                 <span class="text-[18px] font-bold">{{ fruit.price }} тг/кг.</span>
             </div>
-            <div class="border border-[#D3D3D3] p-2 rounded-[10px] border-[2px]">
+            <div @click="() => addToCart(fruit)"
+                class="border border-[#D3D3D3] p-2 rounded-[10px] border-[2px] cursor-pointer">
                 <img src="/add.svg" alt="">
             </div>
         </div>
@@ -23,4 +24,10 @@
 defineProps({
     fruit: Object
 })
+
+function addToCart(fruit) {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || []
+    cartItems.push(fruit)
+    localStorage.setItem('cart', JSON.stringify(cartItems))
+}
 </script>

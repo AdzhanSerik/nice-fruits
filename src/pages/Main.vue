@@ -4,8 +4,9 @@
         <Slider />
         <Search :onChange="onChange" />
         <AllProducts :fruits="fruits" />
-        <div v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1"></div>
-        <Cart v-if="isOpenCart" :toggleCart="toggleCart" />
+        <div @click="toggleCart" v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1">
+        </div>
+        <Cart v-if="isOpenCart" :toggleCart="toggleCart" :cartItems="cartItems" />
     </div>
 </template>
 
@@ -21,6 +22,9 @@ import { ref } from 'vue'
 const fruits = ref(Fruits)
 const searchText = ref('')
 const isOpenCart = ref(false)
+
+const cartItemsFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
+const cartItems = ref(cartItemsFromLocalStorage || [])
 
 function onChange(e) {
     searchText.value = e.target.value
