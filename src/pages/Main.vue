@@ -6,7 +6,7 @@
         <AllProducts :fruits="fruits" :addToCart="addToCart" />
         <div @click="toggleCart" v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1">
         </div>
-        <Cart v-if="isOpenCart" :toggleCart="toggleCart" :cartItems="cartItems" />
+        <Cart v-if="isOpenCart" :toggleCart="toggleCart" :removeItemCart="removeItemCart" :cartItems="cartItems" />
     </div>
 </template>
 
@@ -26,16 +26,22 @@ const cartItems = ref([])
 
 
 
-async function addToCart(fruitCart) {
-    const cartItemsFromLocalStorage = await JSON.parse(localStorage.getItem('cart'))
+function addToCart(fruitCart) {
+    const cartItemsFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
     cartItems.value = cartItemsFromLocalStorage || []
     if (fruitCart) {
         cartItems.value.push(fruitCart)
         localStorage.setItem('cart', JSON.stringify(cartItems.value))
         console.log(cartItems.value)
     }
-
 }
+
+function removeItemCart(id) {
+    cartItems.value = cartItems.value.filter(item => item.id != id)
+    localStorage.setItem('cart', JSON.stringify(cartItems.value))
+}
+
+
 
 onMounted(() => {
     addToCart()

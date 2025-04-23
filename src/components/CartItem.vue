@@ -5,7 +5,7 @@
             <span class="text-xl">{{ cartItem.title }}</span>
             <p class="font-bold">{{ cartItem.price }} тг./1 кг.</p>
         </div>
-        <img class="absolute bottom-7 right-3" src="/close.svg" alt="">
+        <img @click="$emit('removeItemCart', cartItem.id)" class="absolute bottom-7 right-3" src="/close.svg" alt="">
     </div>
 </template>
 
@@ -13,4 +13,6 @@
 defineProps({
     cartItem: Object
 })
+
+defineEmits(['removeItemCart'])
 </script>

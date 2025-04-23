@@ -5,8 +5,9 @@
                 <h3 class="text-2xl">Корзина</h3>
                 <img @click="toggleCart" class="cursor-pointer" src="/close.svg" alt="">
             </div>
-            <div class="flex flex-col gap-[10px]">
-                <CartItem v-for="cartItem in cartItems.slice().reverse()" :key="cartItem.id" :cartItem="cartItem" />
+            <div class="flex flex-col gap-[10px]" v-auto-animate>
+                <CartItem v-for="cartItem in cartItems.slice().reverse()" :key="cartItem.id" :cartItem="cartItem"
+                    @removeItemCart="removeItemCart" />
             </div>
         </div>
     </div>
@@ -18,7 +19,8 @@ import CartItem from './CartItem.vue'
 
 defineProps({
     toggleCart: Function,
-    cartItems: Array
+    cartItems: Array,
+    removeItemCart: Function
 })
 
 </script>
