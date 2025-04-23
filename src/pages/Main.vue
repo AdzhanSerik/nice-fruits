@@ -6,9 +6,6 @@
         <AllProducts :fruits="fruits" :addToCart="addToCart" />
         <div @click="toggleCart" v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1">
         </div>
-        <div v-for="cartItem in cartItems">
-            {{ cartItem.title }}
-        </div>
         <Cart v-if="isOpenCart" :toggleCart="toggleCart" :cartItems="cartItems" />
     </div>
 </template>
@@ -28,14 +25,21 @@ const isOpenCart = ref(false)
 const cartItems = ref([])
 
 
+
 async function addToCart(fruitCart) {
     const cartItemsFromLocalStorage = await JSON.parse(localStorage.getItem('cart'))
     cartItems.value = cartItemsFromLocalStorage || []
-    cartItems.value.push(fruitCart)
-    localStorage.setItem('cart', JSON.stringify(cartItems.value))
-    console.log(cartItems.value)
+    if (fruitCart) {
+        cartItems.value.push(fruitCart)
+        localStorage.setItem('cart', JSON.stringify(cartItems.value))
+        console.log(cartItems.value)
+    }
+
 }
 
+onMounted(() => {
+    addToCart()
+})
 
 
 function onChange(e) {

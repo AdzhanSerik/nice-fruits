@@ -6,14 +6,14 @@
                 <img @click="toggleCart" class="cursor-pointer" src="/close.svg" alt="">
             </div>
             <div class="flex flex-col gap-[10px]">
-                <CartItem v-for="cartItem in cartItems" :key="cartItem.id" :title="cartItem.title" />
+                <CartItem v-for="cartItem in cartItems.slice().reverse()" :key="cartItem.id" :cartItem="cartItem" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+
 import CartItem from './CartItem.vue'
 
 defineProps({
