@@ -6,7 +6,7 @@
                 <img @click="toggleCart" class="cursor-pointer" src="/close.svg" alt="">
             </div>
             <div class="flex flex-col gap-[10px]">
-                <CartItem v-for="cartItem in cartItems" :key="cartItem.id" />
+                <CartItem v-for="cartItem in cartItems" :key="cartItem.id" :title="cartItem.title" />
             </div>
         </div>
     </div>

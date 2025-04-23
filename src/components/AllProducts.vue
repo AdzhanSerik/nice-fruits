@@ -2,7 +2,7 @@
     <div v-auto-animate>
         <div v-auto-animate v-if="fruits.length > 0"
             class="flex items-center justify-center gap-[40px] flex-wrap mt-10 pb-20">
-            <Product v-for="fruit in fruits" :key="fruit.id" :fruit="fruit" />
+            <Product @addToCart="addToCart" v-for="fruit in fruits" :key="fruit.id" :fruit="fruit" />
         </div>
         <div v-else class="h-[90vh] flex flex-col items-center justify-center">
             <img src="/sad.png" alt="">
@@ -15,7 +15,8 @@
 import Product from './Product.vue'
 
 defineProps({
-    fruits: Array
+    fruits: Array,
+    addToCart: Function
 })
 
 

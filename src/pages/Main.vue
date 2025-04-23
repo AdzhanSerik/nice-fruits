@@ -3,8 +3,11 @@
         <Header :toggleCart="toggleCart" />
         <Slider />
         <Search :onChange="onChange" />
-        <AllProducts :fruits="fruits" />
+        <AllProducts :fruits="fruits" :addToCart="addToCart" />
         <div @click="toggleCart" v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1">
+        </div>
+        <div v-for="cartItem in cartItems">
+            {{ cartItem.title }}
         </div>
         <Cart v-if="isOpenCart" :toggleCart="toggleCart" :cartItems="cartItems" />
     </div>
@@ -17,14 +20,23 @@ import Search from '../components/Search.vue'
 import Fruits from '../Data/fruits.json'
 import Cart from '../components/Cart.vue'
 import AllProducts from '../components/AllProducts.vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const fruits = ref(Fruits)
 const searchText = ref('')
 const isOpenCart = ref(false)
+const cartItems = ref([])
 
-const cartItemsFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
-const cartItems = ref(cartItemsFromLocalStorage || [])
+
+async function addToCart(fruitCart) {
+    const cartItemsFromLocalStorage = await JSON.parse(localStorage.getItem('cart'))
+    cartItems.value = cartItemsFromLocalStorage || []
+    cartItems.value.push(fruitCart)
+    localStorage.setItem('cart', JSON.stringify(cartItems.value))
+    console.log(cartItems.value)
+}
+
+
 
 function onChange(e) {
     searchText.value = e.target.value
