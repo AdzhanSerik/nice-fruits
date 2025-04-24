@@ -13,7 +13,7 @@
             </div>
             <div @click="$emit('addToCart', fruit)"
                 class="border border-[#D3D3D3] p-2 rounded-[10px] border-[2px] cursor-pointer">
-                <img src="/add.svg" alt="">
+                <img :src="fruit.isAdded ? '/selectTovar.svg' : '/add.svg'" alt="">
             </div>
         </div>
     </div>

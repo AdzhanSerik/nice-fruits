@@ -24,16 +24,70 @@ const searchText = ref('')
 const isOpenCart = ref(false)
 const cartItems = ref([])
 
-
-
-function addToCart(fruitCart) {
+function renderFruits() {
     const cartItemsFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
     cartItems.value = cartItemsFromLocalStorage || []
-    if (fruitCart) {
+    if (cartItemsFromLocalStorage) {
+        fruits.value = fruits.value.map(item => {
+            const findFruit = cartItems.value.find(fruitFromCart => fruitFromCart.id === item.id)
+            if (findFruit) {
+                return {
+                    ...item,
+                    isAdded: true
+                }
+            }
+            else {
+                return {
+                    ...item,
+                    isAdded: false
+                }
+            }
+
+        })
+    }
+    else {
+        console.log('dasdsad')
+        fruits.value = fruits.value.map(item => ({
+            ...item,
+            isAdded: false
+        }))
+    }
+}
+
+function addToCart(fruitCart) {
+
+    const isFoundFruit = cartItems.value.find(item => item.id === fruitCart.id)
+
+    if (!isFoundFruit) {
         cartItems.value.push(fruitCart)
         localStorage.setItem('cart', JSON.stringify(cartItems.value))
-        console.log(cartItems.value)
     }
+    else {
+        cartItems.value = cartItems.value.filter(item => item.id != fruitCart.id)
+        localStorage.setItem('cart', JSON.stringify(cartItems.value))
+    }
+
+
+    fruits.value = fruits.value.map(item => {
+        const findFruit = cartItems.value.find(fruitFromCart => fruitFromCart.id === item.id)
+        if (findFruit) {
+            return {
+                ...item,
+                isAdded: true
+            }
+        }
+        else {
+            return {
+                ...item,
+                isAdded: false
+            }
+        }
+
+    })
+
+
+    console.log(cartItems.value)
+    console.log(fruits.value)
 }
 
 function removeItemCart(id) {
@@ -44,7 +98,7 @@ function removeItemCart(id) {
 
 
 onMounted(() => {
-    addToCart()
+    renderFruits()
 })
 
 
