@@ -12,7 +12,11 @@
                 <button @click="increment"
                     class="cursor-pointer text-2xl bg-lime-700 w-10 h-10 rounded-full flex items-center justify-center text-white">+</button>
             </div>
-            <button class="p-2 bg-lime-700 text-white font-bold rounded-[10px]">Добавить</button>
+            <div class="text-black">
+                {{ priceQuant }}
+            </div>
+            <button @click="openModalQuantity"
+                class="p-2 bg-lime-700 text-white font-bold rounded-[10px]">Добавить</button>
         </div>
     </div>
 </template>
@@ -21,6 +25,8 @@
 defineProps({
     kgModal: Number,
     decrement: Function,
-    increment: Function
+    increment: Function,
+    openModalQuantity: Function,
+    priceQuant: Number
 })
 </script>

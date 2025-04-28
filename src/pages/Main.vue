@@ -7,7 +7,8 @@
         <div @click="toggleCart" v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1">
         </div>
         <Cart v-if="isOpenCart" :toggleCart="toggleCart" :removeItemCart="removeItemCart" :cartItems="cartItems" />
-        <QuantityFruit :kgModal="kgModal" :increment="increment" :decrement="decrement" />
+        <QuantityFruit v-if="isOpenQuantityModal" :kgModal="kgModal" :increment="increment" :decrement="decrement"
+            :openModalQuantity="openModalQuantity" :priceQuant="priceQuant" />
     </div>
 </template>
 
@@ -26,6 +27,14 @@ const searchText = ref('')
 const isOpenCart = ref(false)
 const cartItems = ref([])
 const kgModal = ref(0)
+const isOpenQuantityModal = ref(false)
+const priceQuant = ref(0)
+
+function openModalQuantity() {
+    isOpenQuantityModal.value = !isOpenQuantityModal.value
+}
+
+
 
 function increment() {
     kgModal.value++
@@ -66,6 +75,11 @@ function renderFruits() {
 }
 
 function addToCart(fruitCart) {
+
+    openModalQuantity()
+
+    priceQuant.value = fruitCart.price
+
     const isFoundFruit = cartItems.value.find(item => item.id === fruitCart.id)
     if (!isFoundFruit) {
         cartItems.value.push(fruitCart)
