@@ -8,7 +8,8 @@
         </div>
         <Cart v-if="isOpenCart" :toggleCart="toggleCart" :removeItemCart="removeItemCart" :cartItems="cartItems" />
         <QuantityFruit v-if="isOpenQuantityModal" :kgModal="kgModal" :increment="increment" :decrement="decrement"
-            :openModalQuantity="openModalQuantity" :priceQuant="priceQuant" />
+            :openModalQuantity="openModalQuantity" :priceQuant="priceQuant" :staticPriceFruit="staticPriceFruit"
+            :changeValue="changeValue" :num="num" />
     </div>
 </template>
 
@@ -28,20 +29,34 @@ const isOpenCart = ref(false)
 const cartItems = ref([])
 const kgModal = ref(0)
 const isOpenQuantityModal = ref(false)
+const staticPriceFruit = ref(0)
 const priceQuant = ref(0)
 
+
+
 function openModalQuantity() {
+    kgModal.value = 1
     isOpenQuantityModal.value = !isOpenQuantityModal.value
 }
 
 
 
-function increment() {
+
+function increment(val) {
+    priceQuant.value = val
     kgModal.value++
+    priceQuant.value = Number(priceQuant.value) * Number(kgModal.value)
 }
 
-function decrement() {
+function changeValue(e) {
+    kgModal.value = e.target.value
+    priceQuant.value = e.target.value * staticPriceFruit.value
+}
+
+function decrement(val) {
+    priceQuant.value = val
     kgModal.value--
+    priceQuant.value = Number(priceQuant.value) * Number(kgModal.value)
 }
 
 function renderFruits() {
@@ -77,7 +92,7 @@ function renderFruits() {
 function addToCart(fruitCart) {
 
     openModalQuantity()
-
+    staticPriceFruit.value = fruitCart.price
     priceQuant.value = fruitCart.price
 
     const isFoundFruit = cartItems.value.find(item => item.id === fruitCart.id)
