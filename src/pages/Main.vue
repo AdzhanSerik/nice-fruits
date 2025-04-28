@@ -90,6 +90,7 @@ function addToCart(fruitCart) {
 function removeItemCart(id) {
     cartItems.value = cartItems.value.filter(item => item.id != id)
     localStorage.setItem('cart', JSON.stringify(cartItems.value))
+    renderFruits()
 }
 
 
