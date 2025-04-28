@@ -55,9 +55,7 @@ function renderFruits() {
 }
 
 function addToCart(fruitCart) {
-
     const isFoundFruit = cartItems.value.find(item => item.id === fruitCart.id)
-
     if (!isFoundFruit) {
         cartItems.value.push(fruitCart)
         localStorage.setItem('cart', JSON.stringify(cartItems.value))
@@ -66,7 +64,6 @@ function addToCart(fruitCart) {
         cartItems.value = cartItems.value.filter(item => item.id != fruitCart.id)
         localStorage.setItem('cart', JSON.stringify(cartItems.value))
     }
-
 
     fruits.value = fruits.value.map(item => {
         const findFruit = cartItems.value.find(fruitFromCart => fruitFromCart.id === item.id)
