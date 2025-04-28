@@ -7,6 +7,7 @@
         <div @click="toggleCart" v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1">
         </div>
         <Cart v-if="isOpenCart" :toggleCart="toggleCart" :removeItemCart="removeItemCart" :cartItems="cartItems" />
+        <QuantityFruit :kgModal="kgModal" :increment="increment" :decrement="decrement" />
     </div>
 </template>
 
@@ -16,6 +17,7 @@ import Slider from '../components/Slider.vue'
 import Search from '../components/Search.vue'
 import Fruits from '../Data/fruits.json'
 import Cart from '../components/Cart.vue'
+import QuantityFruit from '../components/QuantityFruit.vue'
 import AllProducts from '../components/AllProducts.vue'
 import { onMounted, ref } from 'vue'
 
@@ -23,6 +25,15 @@ const fruits = ref(Fruits)
 const searchText = ref('')
 const isOpenCart = ref(false)
 const cartItems = ref([])
+const kgModal = ref(0)
+
+function increment() {
+    kgModal.value++
+}
+
+function decrement() {
+    kgModal.value--
+}
 
 function renderFruits() {
     const cartItemsFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
