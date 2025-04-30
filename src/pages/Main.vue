@@ -10,7 +10,11 @@
         <QuantityFruit v-if="isOpenQuantityModal" :kgModal="kgModal" :increment="increment" :decrement="decrement"
             :openModalQuantity="openModalQuantity" :priceQuant="priceQuant" :staticPriceFruit="staticPriceFruit"
             :changeValue="changeValue" :num="num" />
+        <FruitsData :count="count" :addOne="addOne" />
     </div>
+
+
+
 </template>
 
 <script setup>
@@ -23,6 +27,8 @@ import QuantityFruit from '../components/QuantityFruit.vue'
 import AllProducts from '../components/AllProducts.vue'
 import { onMounted, ref } from 'vue'
 
+import FruitsData from '../components/Fruits.vue'
+
 const fruits = ref(Fruits)
 const searchText = ref('')
 const isOpenCart = ref(false)
@@ -32,12 +38,18 @@ const isOpenQuantityModal = ref(false)
 const staticPriceFruit = ref(0)
 const priceQuant = ref(0)
 
+const count = ref(0)
+function addOne() {
+    count.value++
+}
+
 
 
 function openModalQuantity() {
     kgModal.value = 1
     isOpenQuantityModal.value = !isOpenQuantityModal.value
 }
+
 
 
 
