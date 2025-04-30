@@ -11,7 +11,7 @@
                 <p class="text-[#BDBDBD] text-[16px]">Цена</p>
                 <span class="text-[18px] font-bold">{{ fruit.price }} тг/кг.</span>
             </div>
-            <div @click="$emit('addToCart', fruit)"
+            <div @click="$emit('openModalQuantity', fruit)"
                 class="border border-[#D3D3D3] p-2 rounded-[10px] border-[2px] cursor-pointer">
                 <img :src="fruit.isAdded ? '/selectTovar.svg' : '/add.svg'" alt="">
             </div>
@@ -25,7 +25,7 @@ defineProps({
     fruit: Object
 })
 
-defineEmits(['addToCart'])
+defineEmits(['addToCart', 'openModalQuantity'])
 
 
 

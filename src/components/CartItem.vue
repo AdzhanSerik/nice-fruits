@@ -1,6 +1,6 @@
 <template>
     <div class="relative border border-2 border-[#F3F3F3] flex gap-2 items-center p-5 rounded-[20px]">
-        <img :src="cartItem.image" alt="">
+        <img width="100px" height="100px" :src="cartItem.image" alt="">
         <div class="flex flex-col gap-3 justify-between items-start h-full">
             <span class="text-xl">{{ cartItem.title }}</span>
             <p class="font-bold">{{ cartItem.price }} тг./1 кг.</p>

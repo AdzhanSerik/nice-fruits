@@ -1,6 +1,5 @@
 <template>
-    <div @click="openModalQuantity"
-        class="fixed top-0 left-0 h-full w-full opacity-[70%] bg-black z-2 flex items-center justify-center">
+    <div class="fixed top-0 left-0 h-full w-full opacity-[70%] bg-black z-2 flex items-center justify-center">
     </div>
     <div class="fixed top-0 left-0 h-full w-full z-2 flex items-center justify-center">
         <div class="bg-white opacity-100 p-10 rounded-[20px] flex flex-col gap-10 items-center justify-center">
@@ -16,7 +15,7 @@
             <div class="text-black">
                 {{ priceQuant }}
             </div>
-            <button @click="openModalQuantity"
+            <button @click="() => addToCart(correctFruit)"
                 class="p-2 bg-lime-700 text-white font-bold rounded-[10px]">Добавить</button>
         </div>
     </div>
@@ -28,9 +27,10 @@ defineProps({
     decrement: Function,
     increment: Function,
     changeValue: Function,
-    openModalQuantity: Function,
+    addToCart: Function,
     priceQuant: Number,
-    staticPriceFruit: Number
+    staticPriceFruit: Number,
+    correctFruit: Object
 })
 
 

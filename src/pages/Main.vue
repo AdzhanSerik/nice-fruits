@@ -3,13 +3,13 @@
         <Header :toggleCart="toggleCart" />
         <Slider />
         <Search :onChange="onChange" />
-        <AllProducts :fruits="fruits" :addToCart="addToCart" />
+        <AllProducts :fruits="fruits" :addToCart="addToCart" :openModalQuantity="openModalQuantity" />
         <div @click="toggleCart" v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1">
         </div>
         <Cart v-if="isOpenCart" :toggleCart="toggleCart" :removeItemCart="removeItemCart" :cartItems="cartItems" />
         <QuantityFruit v-if="isOpenQuantityModal" :kgModal="kgModal" :increment="increment" :decrement="decrement"
-            :openModalQuantity="openModalQuantity" :priceQuant="priceQuant" :staticPriceFruit="staticPriceFruit"
-            :changeValue="changeValue" :num="num" />
+            :addToCart="addToCart" :priceQuant="priceQuant" :staticPriceFruit="staticPriceFruit"
+            :changeValue="changeValue" :num="num" :correctFruit="correctFruit" />
     </div>
 
 
@@ -35,17 +35,21 @@ const kgModal = ref(0)
 const isOpenQuantityModal = ref(false)
 const staticPriceFruit = ref(0)
 const priceQuant = ref(0)
+const correctFruit = ref({})
 
 
 
 
 
-function openModalQuantity() {
+
+
+function openModalQuantity(fruit) {
     kgModal.value = 1
+    staticPriceFruit.value = fruit.price
+    priceQuant.value = fruit.price
+    correctFruit.value = { ...fruit, price: priceQuant.value }
     isOpenQuantityModal.value = !isOpenQuantityModal.value
 }
-
-
 
 
 
@@ -88,7 +92,6 @@ function renderFruits() {
         })
     }
     else {
-        console.log('dasdsad')
         fruits.value = fruits.value.map(item => ({
             ...item,
             isAdded: false
@@ -98,9 +101,9 @@ function renderFruits() {
 
 function addToCart(fruitCart) {
 
-    openModalQuantity()
-    staticPriceFruit.value = fruitCart.price
-    priceQuant.value = fruitCart.price
+
+
+    fruitCart.price = priceQuant.value
 
     const isFoundFruit = cartItems.value.find(item => item.id === fruitCart.id)
     if (!isFoundFruit) {
@@ -132,6 +135,8 @@ function addToCart(fruitCart) {
 
     console.log(cartItems.value)
     console.log(fruits.value)
+
+    isOpenQuantityModal.value = !isOpenQuantityModal.value
 }
 
 function removeItemCart(id) {
