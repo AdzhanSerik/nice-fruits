@@ -1,8 +1,10 @@
 <template>
     <div
         class="w-[250px] h-[350px] border relative border-[#D3D3D3] flex flex-col items-center justify-center rounded-[20px] p-6 gap-3 hover:-translate-y-2 transition-all hover:shadow-xl">
-        <div class="absolute top-4 left-4 border border-[#D3D3D3] p-2 rounded-[10px]">
-            <img src="/favorite.svg" alt="">
+
+        <div class="absolute top-4 left-4 border border-[#D3D3D3] p-2 rounded-[10px]"
+            :class="fruit.isLiked ? 'bg-[#FEF0F0]' : ''">
+            <img :src="fruit.isLiked ? '/isLiked.svg' : '/favorite.svg'" alt="" class="">
         </div>
         <img width="180px" height="180px" :src="fruit.image" alt="">
         <h3 class="text-[18px] ">{{ fruit.title }}</h3>
