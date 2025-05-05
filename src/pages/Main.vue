@@ -1,23 +1,16 @@
 <template>
-    <div class="bg-white rounded-[20px] px-[80px]" v-auto-animate>
-        <Header :toggleCart="toggleCart" />
-        <Slider />
-        <Search :onChange="onChange" />
-        <AllProducts :fruits="fruits" :addToCart="addToCart" :openModalQuantity="openModalQuantity" />
-        <div @click="toggleCart" v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1">
-        </div>
-        <Cart v-if="isOpenCart" :toggleCart="toggleCart" :removeItemCart="removeItemCart" :cartItems="cartItems" />
-        <QuantityFruit v-if="isOpenQuantityModal" :kgModal="kgModal" :increment="increment" :decrement="decrement"
-            :addToCart="addToCart" :priceQuant="priceQuant" :staticPriceFruit="staticPriceFruit"
-            :changeValue="changeValue" :num="num" :correctFruit="correctFruit" />
+    <Slider />
+    <Search :onChange="onChange" />
+    <AllProducts :fruits="fruits" :addToCart="addToCart" :openModalQuantity="openModalQuantity" />
+    <div @click="toggleCart" v-if="isOpenCart" class="w-full h-full opacity-[70%] bg-black fixed left-0 top-0 z-1">
     </div>
-
-
-
+    <Cart v-if="isOpenCart" :toggleCart="toggleCart" :removeItemCart="removeItemCart" :cartItems="cartItems" />
+    <QuantityFruit v-if="isOpenQuantityModal" :kgModal="kgModal" :increment="increment" :decrement="decrement"
+        :addToCart="addToCart" :priceQuant="priceQuant" :staticPriceFruit="staticPriceFruit" :changeValue="changeValue"
+        :num="num" :correctFruit="correctFruit" />
 </template>
 
 <script setup>
-import Header from '../components/Header.vue'
 import Slider from '../components/Slider.vue'
 import Search from '../components/Search.vue'
 import Fruits from '../Data/fruits.json'
@@ -26,10 +19,14 @@ import QuantityFruit from '../components/QuantityFruit.vue'
 import AllProducts from '../components/AllProducts.vue'
 import { onMounted, ref } from 'vue'
 
+defineProps({
+    isOpenCart: Boolean,
+    toggleCart: Function
+})
 
 const fruits = ref(Fruits)
 const searchText = ref('')
-const isOpenCart = ref(false)
+
 const cartItems = ref([])
 const kgModal = ref(0)
 const isOpenQuantityModal = ref(false)
@@ -44,8 +41,6 @@ const correctFruit = ref({})
 
 
 function openModalQuantity(fruit) {
-
-
     kgModal.value = 1
     staticPriceFruit.value = fruit.price
     priceQuant.value = fruit.price
@@ -101,6 +96,10 @@ function renderFruits() {
         }))
     }
     console.log(fruits.value)
+}
+
+function addLike() {
+
 }
 
 function renderLikes() {
@@ -164,9 +163,7 @@ function onChange(e) {
     console.log(fruits.value)
 }
 
-function toggleCart() {
-    isOpenCart.value = !isOpenCart.value
-}
+
 
 
 </script>
