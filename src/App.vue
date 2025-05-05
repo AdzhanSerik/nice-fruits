@@ -3,7 +3,7 @@
     <div class="bg-white rounded-[20px] px-[80px]" v-auto-animate>
       <Header :isOpenCart="isOpenCart" :toggleCart="toggleCart" />
 
-      <router-view>
+      <router-view :isOpenCart="isOpenCart" :toggleCart="toggleCart">
       </router-view>
     </div>
   </div>
